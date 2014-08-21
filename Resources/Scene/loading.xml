@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<Scene>
+	<Prefabs>
+		<NULL/>
+	</Prefabs>
+	<SceneGraph>
+		<G name="Control">
+			<C name="Transform" x="400" y="300"/>
+			<C name="Text" font="NEWTOW_B.TTF" size="24" text="/// Loading..."/>
+			<C name="Logic" sub="LoadingScreen">
+				<Require gob="THIS" comp="Transform"/>
+			</C>
+		</G>
+		<G name="Camera">
+			<C name="Transform"/>
+			<C name="Camera"/>
+		</G>
+	</SceneGraph>
+</Scene>

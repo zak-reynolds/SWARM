@@ -1,0 +1,395 @@
+<?xml version="1.0" ?>
+<Scene>
+	<Prefabs>
+		<EndgameSpawner>
+			<G name="EndgameSpawner">
+				<C name="Transform"/>
+				<C name="Logic" sub="Endgame">
+					<Require gob="THIS" comp="Transform"/>
+				</C>
+			</G>
+		</EndgameSpawner>
+		<Credits>
+			<G name="Credits">
+				<C name="Transform"/>
+				<C name="Logic" sub="Credits">
+					<Require gob="THIS" comp="Transform"/>
+					<Require gob="CSwarm" comp="Transform"/>
+					<Require gob="CPPP" comp="Transform"/>
+					<Require gob="CZR" comp="Transform"/>
+					<Require gob="CTfP" comp="Transform"/>
+					<Require gob="CRest" comp="Transform"/>
+				</C>
+			</G>
+		</Credits>
+		<BossProp>
+			<G name="BossProp">
+				<C name="Transform"/>
+				<C name="Sprite" tex="boss-ripple.png" orgx="150" orgy="150" as="30" frames="7" w="300" h="300"/>
+				<C name="Logic" sub="SlowZoom">
+					<Require gob="THIS" comp="Transform"/>
+				</C>
+				<C name="Logic" sub="FloatyTransform">
+					<Require gob="THIS" comp="Transform"/>
+				</C>
+				<C name="Logic" sub="FadeIn">
+					<Require gob="THIS" comp="Transform"/>
+					<Require gob="THIS" comp="Sprite"/>
+				</C>
+			</G>
+		</BossProp>
+		<PowerupHealth>
+			<G name="PowerupHealth">
+				<C name="Transform"/>
+				<C name="Sprite" tex="health.png" orgx="16" orgy="16" as="30" frames="8" w="32" h="32"/>
+				<C name="Collider" group="2" rad="16"/>
+				<C name="Logic" sub="PowerupHealth">
+					<Require gob="THIS" comp="Transform"/>
+					<Require gob="THIS" comp="Collider"/>
+				</C>
+				<C name="Logic" sub="FloatyTransform">
+					<Require gob="THIS" comp="Transform"/>
+				</C>
+			</G>
+		</PowerupHealth>
+		<PowerupGet>
+			<G name="PowerupGet">
+				<C name="Transform" sx="3" sy="3"/>
+				<C name="Sprite" tex="health.png" orgx="16" orgy="16" as="30" frames="8" w="32" h="32"/>
+				<C name="Sound" buf="powerup.wav"/>
+				<C name="Logic" sub="FloatyTransform">
+					<Require gob="THIS" comp="Transform"/>
+				</C>
+				<C name="Logic" sub="PlaySoundOnCreate">
+					<Require gob="THIS" comp="Sound"/>
+				</C>
+				<C name="Logic" sub="DestroyAtAnimEnd">
+					<Require gob="THIS" comp="Sprite"/>
+				</C>
+			</G>
+		</PowerupGet>
+		<Bullet>
+			<G name="Bullet">
+				<C name="Sound" buf="lazer.wav"/>
+				<C name="Sprite" tex="bullet.png" orgx="32" orgy="32"/>
+				<C name="Collider" group="3" rad="20"/>
+				<C name="Logic" sub="BulletLogic">
+					<Require gob="THIS" comp="Transform"/>
+					<Require gob="THIS" comp="Sound"/>
+				</C>
+			</G>
+		</Bullet>
+		<EnemyBullet>
+			<G name="EnemyBullet">
+				<C name="Sound" buf="lazer.wav"/>
+				<C name="Sprite" tex="enemy-bullet.png" orgx="32" orgy="32"/>
+				<C name="Collider" group="2" rad="20"/>
+				<C name="Logic" sub="EnemyBullet">
+					<Require gob="THIS" comp="Transform"/>
+					<Require gob="THIS" comp="Sound"/>
+				</C>
+			</G>
+		</EnemyBullet>
+		<EnemyMissile>
+			<G name="EnemyMissile">
+				<C name="Sound" buf="lazer.wav"/>
+				<C name="Sprite" tex="missile.png" orgx="25" orgy="25"/>
+				<C name="Collider" group="2" rad="20"/>
+				<C name="Logic" sub="EnemyBullet">
+					<Require gob="THIS" comp="Transform"/>
+					<Require gob="THIS" comp="Sound"/>
+				</C>
+			</G>
+		</EnemyMissile>
+		<EnemyWeak>
+			<G name="EnemyWeak">
+				<C name="Transform"/>
+				<C name="Sprite" tex="wasp-anim.png" orgx="50" orgy="50" as="30" frames="5" w="100" h="100"/>
+				<C name="Collider" group="1" rad="45"/>
+				<C name="Logic" sub="EnemyWeak">
+					<Require gob="THIS" comp="Transform"/>
+					<Require gob="THIS" comp="Collider"/>
+				</C>
+				<C name="Logic" sub="FloatyTransform">
+					<Require gob="THIS" comp="Transform"/>
+				</C>
+			</G>
+		</EnemyWeak>
+		<EnemyMid>
+			<G name="EnemyMid">
+				<C name="Transform"/>
+				<C name="Sprite" tex="bug-anim.png" orgx="90" orgy="56" as="30" frames="5" w="189" h="112"/>
+				<C name="Collider" group="1" rad="45"/>
+				<C name="Logic" sub="EnemyMid">
+					<Require gob="THIS" comp="Transform"/>
+					<Require gob="THIS" comp="Collider"/>
+				</C>
+				<C name="Logic" sub="FloatyTransform">
+					<Require gob="THIS" comp="Transform"/>
+				</C>
+			</G>
+		</EnemyMid>
+		<Boss>
+			<G name="Boss">
+				<C name="Transform" y="-150" z="1"/>
+				<C name="Collider" group="1" rad="150"/>
+				<C name="Sprite" tex="boss.png" orgx="150" orgy="150"/>
+				<C name="Logic" sub="SwirlBullets">
+					<Require gob="THIS" comp="Transform"/>
+				</C>
+				<C name="Logic" sub="BossLogic">
+					<Require gob="THIS" comp="Transform"/>
+					<Require gob="THIS" comp="Collider"/>
+				</C>
+				<C name="Logic" sub="FloatyTransform">
+					<Require gob="THIS" comp="Transform"/>
+				</C>
+				<G name="BossLeftEye">
+					<C name="Transform" x="-60" y="-15" z="2"/>
+					<C name="Sprite" tex="boss-eye.png" orgx="10" orgy="10" as="30" frames="5" w="20" h="20" sx="2" sy="2"/>
+				</G>
+				<G name="BossRightEye">
+					<C name="Transform" x="60" y="-15" z="2"/>
+					<C name="Sprite" tex="boss-eye.png" orgx="10" orgy="10" as="30" frames="5" w="20" h="20" sx="2" sy="2"/>
+				</G>
+			</G>
+		</Boss>
+		<Explosion>
+			<G name="Explosion">
+				<C name="Transform"/>
+				<C name="Sprite" tex="explode-anim.png" orgx="50" orgy="37" as="30" frames="30" w="100" h="75"/>
+				<C name="Sound" buf="explosion.wav"/>
+				<C name="Logic" sub="PlaySoundOnCreate">
+					<Require gob="THIS" comp="Sound"/>
+				</C>
+				<C name="Logic" sub="DestroyAtAnimEnd">
+					<Require gob="THIS" comp="Sprite"/>
+				</C>
+			</G>
+		</Explosion>
+		<SilentExplosion>
+			<G name="SilentExplosion">
+				<C name="Transform"/>
+				<C name="Sprite" tex="explode-anim.png" orgx="50" orgy="37" as="30" frames="30" w="100" h="75"/>
+				<C name="Logic" sub="DestroyAtAnimEnd">
+					<Require gob="THIS" comp="Sprite"/>
+				</C>
+			</G>
+		</SilentExplosion>
+		<FXShipColorCrossR>
+			<G name="FXShipColorCrossR">
+				<C name="Transform"/>
+				<C name="Sprite" tex="ship-r.png" orgx="80" orgy="80"/>
+				<C name="Logic" sub="FXShipColorCross">
+					<Require gob="THIS" comp="Transform"/>
+				</C>
+			</G>
+		</FXShipColorCrossR>
+		<FXShipColorCrossG>
+			<G name="FXShipColorCrossG">
+				<C name="Transform"/>
+				<C name="Sprite" tex="ship-g.png" orgx="80" orgy="80"/>
+				<C name="Logic" sub="FXShipColorCross">
+					<Require gob="THIS" comp="Transform"/>
+				</C>
+			</G>
+		</FXShipColorCrossG>
+		<FXSmoke>
+			<G name="FXSmoke">
+				<C name="Transform"/>
+				<C name="Sprite" tex="smoke.png" orgx="100" orgy="100"/>
+				<C name="Logic" sub="FXSmoke">
+					<Require gob="THIS" comp="Transform"/>
+					<Require gob="THIS" comp="Sprite"/>
+				</C>
+			</G>
+		</FXSmoke>
+		<FXMultiExplosion>
+			<G name="FXMultiExplosion">
+				<C name="Transform"/>
+				<C name="Logic" sub="FXMultiExplosion">
+					<Require gob="THIS" comp="Transform"/>
+				</C>
+			</G>
+		</FXMultiExplosion>
+		<FXGameOver>
+			<G name="FXGameOver">
+				<C name="Transform" x="-400" y="-400" z="110"/>
+				<C name="Sprite" tex="stardrop.jpg"/>
+				<C name="Logic" sub="FadeIn">
+					<Require gob="THIS" comp="Transform"/>
+					<Require gob="THIS" comp="Sprite"/>
+				</C>
+			</G>
+		</FXGameOver>
+	</Prefabs>
+	
+	<SceneGraph>
+		<G name="Camera">
+			<C name="Transform" x="400" y="300"/>
+			<C name="Camera"/>
+			<C name="Logic" sub="PulseScale">
+				<Require gob="THIS" comp="Transform"/>
+			</C>
+			<C name="Logic" sub="FloatyTransform">
+				<Require gob="THIS" comp="Transform"/>
+			</C>
+			
+			<G name="Grain">
+				<C name="Transform" x="-400" y="-300" z="100"/>
+				<C name="Sprite" tex="filmgrain.png"/>
+				<C name="Logic" sub="JumpyTransform">
+					<Require gob="THIS" comp="Transform"/>
+				</C>
+			</G>
+			<G name="Grain2">
+				<C name="Transform" x="-683" y="-512" z="102"/>
+				<C name="Sprite" tex="filmgrain2.png"/>
+			</G>
+			<G name="Burst">
+				<C name="Transform" x="0" y="0" z="100" sx="2" sy="2"/>
+				<C name="Sprite" tex="burst.png" orgx="500" orgy="500"/>
+				<C name="Logic" sub="Rotator">
+					<Require gob="THIS" comp="Transform"/>
+				</C>
+			</G>
+			<G name="Warp">
+				<C name="Transform" x="0" y="0" z="99" sx="5" sy="5"/>
+				<C name="Sprite" tex="warp.png" orgx="160" orgy="80" as="30" frames="12" w="320" h="160"/>
+				<C name="Logic" sub="FadeIn">
+					<Require gob="THIS" comp="Transform"/>
+					<Require gob="THIS" comp="Sprite"/>
+				</C>
+			</G>
+			<G name="AlienTalk">
+				<C name="Transform" x="-150" y="200" z="100"/>
+				<C name="Text" font="alien.ttf" size="20" text="" r="255" g="255" b="0"/>
+			</G>
+			<G name="GameOverText">
+				<C name="Transform" x="-300" y="-200" z="111"/>
+				<C name="Text" font="NEWTOW_B.TTF" size="48" text=""/>
+			</G>
+				<G name="CSwarm">
+					<C name="Transform" y="-1000" z="100"/>
+					<C name="Sprite" tex="swarm.png" orgx="265" orgy="85"/>
+				</G>
+				<G name="CPPP">
+					<C name="Transform" x="-200" y="1000" z="100"/>
+					<C name="Text" font="NEWTOW_B.TTF" size="32" text="A Pretty Patty Production"/>
+				</G>
+				<G name="CZR">
+					<C name="Transform" x="1000" y="-50" z="100"/>
+					<C name="Text" font="NEWTOW_B.TTF" size="32" text="Designed and programmed by Zak Reynolds"/>
+				</G>
+				<G name="CTfP">
+					<C name="Transform" x="1000" y="50" z="100"/>
+					<C name="Text" font="NEWTOW_B.TTF" size="32" text="Thanks for playing!"/>
+				</G>
+				<G name="CRest">
+					<C name="Transform" x="-300" y="400" z="100"/>
+					<C name="Text" font="NEWTOW_B.TTF" size="32" text=
+"Music:
+
+    Zak Reynolds- Attack of the Swarm
+
+    R3belz- Galactica
+
+    In-Phase Frequencerz- Fight for our Survival
+
+
+Graphical Elements:
+    
+    dbszabo1 on DeviantArt
+    
+    Bob Mical
+    
+    USGS Bee Inventory and Monitoring Lab
+    
+    
+External Libraries and Tools:
+
+    Simple Fast Multimedia Library
+    
+    Code::Blocks
+    
+    GNU Image Manipulation Program"/>
+				</G>
+		</G>
+		<G name="Reticle">
+			<C name="Transform" x="0" y="0" z="99"/>
+			<C name="Sprite" tex="reticle.png" orgx="16" orgy="16"/>
+			<C name="Logic" sub="FollowMouse">
+				<Require gob="THIS" comp="Transform"/>
+			</C>
+		</G>
+		<G name="m1">
+			<C name="Transform"/>
+			<C name="Music" file="bossintro.ogg"/>
+		</G>
+		<G name="m2">
+			<C name="Transform"/>
+			<C name="Music" file="bossloop.ogg"/>
+		</G>
+		<G name="m3">
+			<C name="Transform"/>
+			<C name="Music" file="bosstransition.ogg"/>
+		</G>
+		<G name="m4">
+			<C name="Transform"/>
+			<C name="Music" file="bossloop2.ogg"/>
+		</G>
+		<G name="m5">
+			<C name="Transform"/>
+			<C name="Music" file="survival.ogg"/>
+		</G>
+		<G name="LevelControl">
+			<C name="Transform"/>
+			<C name="Music" file="game.ogg"/>
+			<C name="Logic" sub="LevelControl">
+				<Require gob="THIS" comp="Music"/>
+				<Require gob="m1" comp="Music"/>
+				<Require gob="m2" comp="Music"/>
+				<Require gob="m3" comp="Music"/>
+				<Require gob="m4" comp="Music"/>
+				<Require gob="m5" comp="Music"/>
+			</C>
+		</G>
+		<G name="Ship">
+			<C name="Transform" x="336" y="500"/>
+			<C name="Collider" group="0" rad="70"/>
+			<C name="Sprite" tex="ship.png" orgx="80" orgy="80"/>
+			<C name="Logic" sub="ShipControl">
+				<Require gob="THIS" comp="Transform"/>
+			</C>
+			<G name="FXShipShocks">
+				<C name="Transform" z="1"/>
+				<C name="Sprite" tex="ship-damaged.png" orgx="80" orgy="80" as="30" frames="5" w="160" h="160"/>
+			</G>
+			<G name="Shield">
+				<C name="Transform" z="2"/>
+				<C name="Collider" group="0" rad="80"/>
+				<C name="Sprite" tex="shield.png" orgx="80" orgy="80"/>
+				<C name="Logic" sub="Shield">
+					<Require gob="THIS" comp="Collider"/>
+				</C>
+			</G>
+		</G>
+		<G name="EnemySpawner">
+			<C name="Logic" sub="EnemySpawner">
+				<Require gob="THIS" comp="Transform"/>
+			</C>
+		</G>
+		<G name="PlanetProp">
+			<C name="Transform" x="500" y="-100" z="-99"/>
+			<C name="Sprite" tex="planet.png"/>
+			<C name="Logic" sub="SlowZoom">
+				<Require gob="THIS" comp="Transform"/>
+			</C>
+		</G>
+		<G name="BG">
+			<C name="Transform" x="-400" y="-400" z="-100"/>
+			<C name="Sprite" tex="stardrop.jpg"/>
+		</G>
+	</SceneGraph>
+
+</Scene>

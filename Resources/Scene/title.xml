@@ -1,0 +1,84 @@
+<?xml version="1.0" ?>
+<Scene>
+	<Prefabs>
+		<NULL/>
+	</Prefabs>
+	<SceneGraph>
+		<G name="Camera">
+			<C name="Transform" x="400" y="300"/>
+			<C name="Camera"/>
+			<C name="Logic" sub="FloatyTransform">
+				<Require gob="THIS" comp="Transform"/>
+			</C>
+			
+			<G name="Grain">
+				<C name="Transform" x="-400" y="-300" z="100"/>
+				<C name="Sprite" tex="filmgrain.png"/>
+				<C name="Logic" sub="JumpyTransform">
+					<Require gob="THIS" comp="Transform"/>
+				</C>
+			</G>
+			<G name="Grain2">
+				<C name="Transform" x="-683" y="-512" z="101"/>
+				<C name="Sprite" tex="filmgrain2.png"/>
+			</G>
+		</G>
+		<G name="Reticle">
+			<C name="Transform" x="0" y="0" z="99"/>
+			<C name="Collider" group="0" rad="10"/>
+			<C name="Sprite" tex="reticle.png" orgx="16" orgy="16"/>
+			<C name="Logic" sub="FollowMouse">
+				<Require gob="THIS" comp="Transform"/>
+			</C>
+		</G>
+		<G name="Title">
+			<C name="Transform" x="400" y="300"/>
+			<C name="Sprite" tex="swarm.png" orgx="265" orgy="85"/>
+			<C name="Music" file="title.ogg"/>
+			<C name="Logic" sub="FloatyTransform">
+				<Require gob="THIS" comp="Transform"/>
+			</C>
+			<C name="Logic" sub="PlayMusicOnCreate">
+				<Require gob="THIS" comp="Music"/>
+			</C>
+			<G name="StartGame">
+				<C name="Transform" x="-100" y="100"/>
+				<C name="Collider" group="1" rad="20"/>
+				<C name="Text" font="NEWTOW_B.TTF" size="24" text="/// Start Game"/>
+				<C name="Logic" sub="StartButton">
+					<Require gob="THIS" comp="Transform"/>
+					<Require gob="THIS" comp="Collider"/>
+				</C>
+			</G>
+			<G name="Options">
+				<C name="Transform" x="-1000" y="150"/>
+				<C name="Collider" group="1" rad="20"/>
+				<C name="Text" font="NEWTOW_B.TTF" size="24" text="/// Options"/>
+				<C name="Logic" sub="OptionsButton">
+					<Require gob="THIS" comp="Transform"/>
+					<Require gob="THIS" comp="Collider"/>
+				</C>
+			</G>
+			<G name="QuitGame">
+				<C name="Transform" x="-100" y="150"/>
+				<C name="Collider" group="1" rad="20"/>
+				<C name="Text" font="NEWTOW_B.TTF" size="24" text="/// Quit Game"/>
+				<C name="Logic" sub="QuitButton">
+					<Require gob="THIS" comp="Transform"/>
+					<Require gob="THIS" comp="Collider"/>
+				</C>
+			</G>
+		</G>
+		<G name="Bug">
+			<C name="Transform" x="400" y="0"/>
+			<C name="Sprite" tex="bug.png"/>
+			<C name="Logic" sub="FloatyTransform">
+				<Require gob="THIS" comp="Transform"/>
+			</C>
+		</G>
+		<G name="BG">
+			<C name="Transform" x="-400" y="-400" z="-100"/>
+			<C name="Sprite" tex="stardrop.jpg"/>
+		</G>
+	</SceneGraph>
+</Scene>
